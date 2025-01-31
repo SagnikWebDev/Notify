@@ -1,0 +1,339 @@
+*,
+::after,
+::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+/* ##################################### left aside section ###################################### */
+
+/* #########################  globally appiled #######################*/
+
+li {
+  list-style-type: none;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+.remove-categorie,
+.add-categorie-btn,
+#settings {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+#left-aside-section {
+  width: clamp(200px, 50%, 290px);
+  background-color: rgb(93, 93, 244);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+/* ######################### Some changing by events  #######################*/
+.light {
+  transform: translateX(-4px);
+}
+.dark {
+  transform: translateX(11px);
+}
+.hidden {
+  display: none !important;
+}
+.profile-settings-section-hide {
+  transform: translateX(0px) !important;
+}
+/* ########################### left-aside-section_first-section ######################### */
+.left-aside-section_first-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 18px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+#profile-img {
+  width: 25px;
+}
+.profile-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border: 1px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.profile-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  color: whitesmoke;
+}
+#profile-Name {
+  font-size: 14px;
+}
+#mode {
+  border: none;
+  width: 40px;
+  height: 25px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.mode-icon-wrapper {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(93, 93, 244);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* ########################### left-aside-section_second-section ######################### */
+.left-aside-section_second-section {
+  width: 100%;
+  display: flex;
+  flex-basis: 80%;
+}
+.add-categorie-btn {
+  font-size: 20px;
+  color: rgb(229, 227, 227);
+}
+#Notify-img {
+  width: 50px;
+}
+
+.categories-section-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.categories-container-wrapper {
+  width: 100%;
+}
+.categories-additionbtn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 18px;
+  color: white;
+}
+.categories-container {
+  width: 100%;
+  display: flex;
+  padding-inline: 18px;
+  padding-block: 8px;
+  color: rgb(229, 227, 227);
+}
+.categorie-text-wrapper {
+  display: flex;
+  gap: 15px;
+  /* gap: 100px; */
+  color: rgb(229, 227, 227);
+}
+.categorie-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+.categories-container-wrapper {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.remove-categorie {
+  margin-left: 50px;
+  transition: all 250ms ease-in-out;
+}
+.categories-container:hover .remove-categorie {
+  margin-left: 0px;
+}
+.categorie-input {
+  background-color: transparent;
+  border: none;
+  color: rgb(229, 227, 227);
+}
+.categorie-note-length {
+  background-color: rgb(70, 70, 226);
+  padding-inline: 5px;
+  padding-block: 3px;
+  border-radius: 5px;
+  font-size: 13px;
+  text-align: center;
+}
+.categories-container-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.categories-container-wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.categories-container:hover {
+  background-color: rgb(62, 62, 197) !important;
+}
+.categories-container:active {
+  background-color: rgb(62, 62, 197) !important;
+}
+.categorie-input {
+  width: clamp(99px, 100%, 199px);
+}
+@media (max-width: 520px) and (min-width: 398px) {
+  .remove-categorie {
+    margin-left: 100px;
+  }
+}
+/* ########################### left-aside-section_third-section ######################### */
+
+.left-aside-third-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 18px;
+  color: white;
+}
+.webApp-Name-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+.webApp-img-container {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ########################### profile-settings-section ######################### */
+
+#UserPic {
+  display: none;
+}
+#UserPic-img {
+  width: 50px;
+  cursor: pointer;
+}
+#UserPic-label {
+  position: relative;
+  cursor: pointer;
+}
+#UserPic-label::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: absolute;
+  top: -2px;
+  right: 5px;
+  background: url("../src/editbutton.png");
+  background-position: center;
+
+  background-size: 10px;
+  background-repeat: no-repeat;
+}
+#UserPic-label::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: rgb(70, 70, 226);
+  border: 1px solid white;
+  border-radius: 50%;
+  position: absolute;
+  top: -2px;
+  right: 5px;
+}
+.profile-settings-section_upper-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.back-btn {
+  background-color: transparent;
+  border: none;
+}
+.profile-settings-section_middle-section_detail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.messages-section::before {
+  content: attr(data-vaild);
+  left: 5px;
+  bottom: -10px;
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  color: rgb(56, 193, 56);
+  display: none;
+}
+.messages-section::after {
+  content: attr(data-error);
+  position: absolute;
+  left: 5px;
+  bottom: -10px;
+  width: 100%;
+  height: 20px;
+  color: red;
+  display: none;
+}
+
+.profile-settings-section_middle-section_detail-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.profile-settings-section_form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 18px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+.Save-btn {
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.profile-settings-section_middle-section_detail-inputs {
+  padding: 5px;
+}
+
+.profile-settings-section_middle-section_detail-inputs:user-valid:not(
+    :placeholder-shown
+  )
+  + .messages-section::before {
+  display: block;
+}
+.profile-settings-section_middle-section_detail-inputs:invalid:not(
+    :placeholder-shown
+  )
+  + .messages-section::after {
+  display: block;
+}
+
+.profile-settings-section {
+  position: absolute;
+  width: 100%;
+  background-color: rgb(93, 93, 244);
+  height: inherit;
+  transform: translateX(300px);
+}
+
+/* ##################################### left aside section ###################################### */
