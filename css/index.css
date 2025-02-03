@@ -23,14 +23,26 @@ li {
   border: none;
   cursor: pointer;
 }
+.toggle {
+  display: none;
+  background-color: transparent;
+  border: none;
+}
+.add-circular-btn {
+  display: none;
+  box-shadow: 0px 0px 3px black;
+}
 #left-aside-section {
-  width: clamp(200px, 50%, 290px);
+  width: clamp(270px, 30%, 300px);
   background-color: rgb(93, 93, 244);
   display: flex;
   flex-direction: column;
   height: 100vh;
   position: relative;
   overflow-x: hidden;
+}
+.container {
+  display: flex;
 }
 /* ######################### Some changing by events  #######################*/
 .light {
@@ -42,7 +54,7 @@ li {
 .hidden {
   display: none !important;
 }
-.profile-settings-section-hide {
+.profile-settings-section-visible {
   transform: translateX(0px) !important;
 }
 /* ########################### left-aside-section_first-section ######################### */
@@ -188,11 +200,11 @@ li {
 .categorie-input {
   width: clamp(99px, 100%, 199px);
 }
-@media (max-width: 520px) and (min-width: 398px) {
+/* @media (max-width: 520px) and (min-width: 398px) {
   .remove-categorie {
     margin-left: 100px;
   }
-}
+} */
 /* ########################### left-aside-section_third-section ######################### */
 
 .left-aside-third-section {
@@ -200,6 +212,7 @@ li {
   justify-content: space-between;
   align-items: center;
   padding-inline: 18px;
+  padding-block: 20px;
   color: white;
 }
 .webApp-Name-container {
@@ -215,6 +228,9 @@ li {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+.settings-img {
+  width: 25px;
 }
 
 /* ########################### profile-settings-section ######################### */
@@ -336,4 +352,221 @@ li {
   transform: translateX(300px);
 }
 
+/* ########################### MEDIA ###################### */
+@media (max-width: 532px) {
+  #left-aside-section {
+    position: absolute;
+    top: 0;
+    left: -280px;
+    z-index: 999;
+  }
+  .left-aside-section-open {
+    left: 0px !important;
+  }
+  .toggle {
+    display: block !important;
+  }
+  .remove-categorie {
+    margin-left: 110px;
+  }
+  main {
+    width: 100% !important;
+  }
+  .add-circular-btn {
+    display: block !important;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(93, 93, 244);
+    font-size: 20px;
+    border: 3px solid whitesmoke;
+    z-index: 800;
+    cursor: pointer;
+  }
+}
+@media (min-width: 532px) and (max-width: 584px) {
+  .remove-categorie {
+    margin-left: 0 !important;
+  }
+}
 /* ##################################### left aside section ###################################### */
+
+/* #################### main ######################### */
+
+/*######################## main-first-section ############# */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 20px;
+  padding-block: 10px;
+  padding-top: 20px;
+}
+.header-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+}
+
+/* ########################################  main-second-section ################################ */
+
+select {
+  border: none;
+}
+details,
+summary {
+  cursor: pointer;
+}
+summary {
+  display: block;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+.sorting-btn-container {
+  display: flex;
+  gap: 5px;
+}
+.main-second-section_first-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sort-btns-imgs {
+  width: 16px;
+}
+.main-second-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-inline: 20px;
+  padding-block: 10px;
+}
+.search-input,
+.add-Note-btn {
+  padding: 8px;
+}
+.search-input {
+  font-size: 16px;
+  width: 100%;
+}
+.add-Note-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  background-color: rgb(93, 93, 244);
+  color: white;
+  border: none;
+}
+.add-Note-btn:hover {
+  background-color: rgb(70, 70, 226);
+}
+.add-Note-btn_plus-icon {
+  font-size: 18px;
+}
+/* #########################################  main-third-section ################################# */
+
+.note-upper-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.circle {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+.red {
+  background-color: red;
+}
+.yellow {
+  background-color: yellow;
+}
+.green {
+  background-color: greenyellow;
+}
+.importent-level {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.note {
+  /* width: 326px;
+  width: 35%; */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-inline: 20px;
+  padding-block: 15px;
+}
+.note:hover {
+  background-color: rgb(232, 232, 232);
+}
+.note:active {
+  background-color: rgb(232, 232, 232);
+}
+.title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.note-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.main-third-section {
+  overflow-y: scroll;
+}
+main {
+  width: calc(100% - 260px);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: rgb(245, 245, 245);
+}
+details {
+  position: relative;
+}
+.sort-value-container {
+  position: absolute;
+  left: -50px;
+  background-color: white;
+  box-shadow: 0px 0px 3px black;
+  z-index: 700;
+}
+.sort-value-container > * {
+  padding-block: 5px;
+  padding-inline: 10px;
+}
+.sort-value-container > *:hover {
+  background-color: rgb(232, 232, 232);
+}
+.search-input {
+  padding-right: 45px;
+}
+.search-btn {
+  position: absolute;
+  right: 0;
+  padding: 8px;
+  height: 37.6px;
+  width: 37.6px;
+  cursor: pointer;
+}
+.search-btn-pic {
+  width: 20px;
+}
+.search-input-container {
+  position: relative;
+}
