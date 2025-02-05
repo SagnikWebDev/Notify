@@ -229,231 +229,247 @@
           </form>
         </section>
       </aside>
-      <main>
-        <section class="main-first-section">
-          <header>
-            <div class="header-text-container">
-              <h1 class="header-text" role="heading" aria-label="Categorie">
-                General
-              </h1>
-              <p class="date-time">
-                Good morning
-                <span aria-label="Current Time">09:00am</span
-                ><span aria-label="Date">(23/10/1992)</span>
-              </p>
+      <div class="cover">
+        <main>
+          <section class="main-first-section">
+            <header>
+              <div class="header-text-container">
+                <h1 class="header-text" role="heading" aria-label="Categorie">
+                  General
+                </h1>
+                <p class="date-time">
+                  Good morning
+                  <span aria-label="Current Time">09:00am</span
+                  ><span aria-label="Date">(23/10/1992)</span>
+                </p>
+              </div>
+              <button
+                class="toggle"
+                title="Menu"
+                aria-label="Menu"
+                aria-expanded="false"
+                aria-controls="left-aside-section"
+              >
+                menu
+              </button>
+            </header>
+          </section>
+          <section class="main-second-section">
+            <div class="main-second-section_first-section">
+              <p id="note-number">28 Notes</p>
+              <div class="sorting-btn-container">
+                <details name="User_Sort-data" id="User-Sort" title="sort">
+                  <summary aria-label="Sort" role="button">
+                    <img
+                      src="./src/filter.png"
+                      alt="filter-img"
+                      class="sort-btns-imgs"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    />
+                  </summary>
+                  <div class="sort-value-container">
+                    <summary value="oldest">oldest</summary>
+                    <summary value="newest">newest</summary>
+                    <summary value="high">high</summary>
+                    <summary value="low">low</summary>
+                    <summary value="medium">medium</summary>
+                  </div>
+                </details>
+                <details name="User_tags" title="Tags" id="User-tags">
+                  <summary aria-label="Filter By Tags" role="button">
+                    <img
+                      src="./src/tag.png"
+                      alt="tag-img"
+                      class="sort-btns-imgs"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    />
+                  </summary>
+                  <div class="sort-value-container">
+                    <summary value="oldest">No Tags</summary>
+                  </div>
+                </details>
+              </div>
+            </div>
+            <div class="search-input-container">
+              <input
+                type="text"
+                placeholder="Search Notes..."
+                class="search-input"
+              />
+              <button class="search-btn" title="Search" aria-label="search">
+                <img
+                  src="./src/search.png"
+                  alt="search-btn-logo"
+                  class="search-btn-pic"
+                  tabindex="-1"
+                  aria-hidden="true"
+                />
+              </button>
             </div>
             <button
-              class="toggle"
-              title="Menu"
-              aria-label="Menu"
-              aria-expanded="false"
-              aria-controls="left-aside-section"
+              class="add-Note-btn"
+              title="Add Notes"
+              aria-label="Add Notes"
             >
-              menu
-            </button>
-          </header>
-        </section>
-        <section class="main-second-section">
-          <div class="main-second-section_first-section">
-            <p id="note-number">28 Notes</p>
-            <div class="sorting-btn-container">
-              <details name="User_Sort-data" id="User-Sort" title="sort">
-                <summary aria-label="Sort" role="button">
-                  <img
-                    src="./src/filter.png"
-                    alt="filter-img"
-                    class="sort-btns-imgs"
-                    tabindex="-1"
-                    aria-hidden="true"
-                  />
-                </summary>
-                <div class="sort-value-container">
-                  <summary value="oldest">oldest</summary>
-                  <summary value="newest">newest</summary>
-                  <summary value="high">high</summary>
-                  <summary value="low">low</summary>
-                  <summary value="medium">medium</summary>
-                </div>
-              </details>
-              <details name="User_tags" title="Tags" id="User-tags">
-                <summary aria-label="Filter By Tags" role="button">
-                  <img
-                    src="./src/tag.png"
-                    alt="tag-img"
-                    class="sort-btns-imgs"
-                    tabindex="-1"
-                    aria-hidden="true"
-                  />
-                </summary>
-                <div class="sort-value-container">
-                  <summary value="oldest">No Tags</summary>
-                </div>
-              </details>
-            </div>
-          </div>
-          <div class="search-input-container">
-            <input
-              type="text"
-              placeholder="Search Notes..."
-              class="search-input"
-            />
-            <button class="search-btn" title="Search" aria-label="search">
-              <img
-                src="./src/search.png"
-                alt="search-btn-logo"
-                class="search-btn-pic"
+              <span
+                class="add-Note-btn_plus-icon"
                 tabindex="-1"
                 aria-hidden="true"
-              />
+                >+</span
+              ><span>ADD NOTE</span>
             </button>
-          </div>
-          <button class="add-Note-btn" title="Add Notes" aria-label="Add Notes">
-            <span
-              class="add-Note-btn_plus-icon"
-              tabindex="-1"
-              aria-hidden="true"
-              >+</span
-            ><span>ADD NOTE</span>
-          </button>
-        </section>
-        <section class="main-third-section">
-          <ul aria-live="polite" role="region">
-            <li class="note-wrapper" tabindex="0">
-              <div class="note" id="">
-                <div class="note-upper-section">
-                  <div class="importent-level">
-                    <span class="circle red"></span>
-                    <p class="inportent-level-text">General</p>
+          </section>
+          <section class="main-third-section">
+            <ul aria-live="polite" role="region">
+              <li class="note-wrapper" tabindex="0">
+                <div class="note" id="">
+                  <div class="note-upper-section">
+                    <div class="importent-level">
+                      <span class="circle red"></span>
+                      <p class="inportent-level-text">General</p>
+                    </div>
+                    <p class="date-text">02/02/2025</p>
                   </div>
-                  <p class="date-text">02/02/2025</p>
+                  <h2 class="title">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Libero quo autem, odit ducimus possimus laborum beatae
+                    excepturi aliquid neque adipisci reiciendis vitae tempora
+                    saepe sunt? Corrupti aperiam sapiente magni eius!
+                  </h2>
+                  <p class="note-content">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Inventore repellat minima, error sed distinctio ullam
+                    placeat libero, unde culpa fugit sunt possimus. Quae,
+                    veritatis sequi.
+                  </p>
                 </div>
-                <h2 class="title">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Libero quo autem, odit ducimus possimus laborum beatae
-                  excepturi aliquid neque adipisci reiciendis vitae tempora
-                  saepe sunt? Corrupti aperiam sapiente magni eius!
-                </h2>
-                <p class="note-content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Inventore repellat minima, error sed distinctio ullam placeat
-                  libero, unde culpa fugit sunt possimus. Quae, veritatis sequi.
-                </p>
-              </div>
-            </li>
-            <li class="note-wrapper" tabindex="0">
-              <div class="note" id="">
-                <div class="note-upper-section">
-                  <div class="importent-level">
-                    <span class="circle red"></span>
-                    <p class="inportent-level-text">General</p>
+              </li>
+              <li class="note-wrapper" tabindex="0">
+                <div class="note" id="">
+                  <div class="note-upper-section">
+                    <div class="importent-level">
+                      <span class="circle red"></span>
+                      <p class="inportent-level-text">General</p>
+                    </div>
+                    <p class="date-text">02/02/2025</p>
                   </div>
-                  <p class="date-text">02/02/2025</p>
+                  <h2 class="title">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Libero quo autem, odit ducimus possimus laborum beatae
+                    excepturi aliquid neque adipisci reiciendis vitae tempora
+                    saepe sunt? Corrupti aperiam sapiente magni eius!
+                  </h2>
+                  <p class="note-content">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Inventore repellat minima, error sed distinctio ullam
+                    placeat libero, unde culpa fugit sunt possimus. Quae,
+                    veritatis sequi.
+                  </p>
                 </div>
-                <h2 class="title">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Libero quo autem, odit ducimus possimus laborum beatae
-                  excepturi aliquid neque adipisci reiciendis vitae tempora
-                  saepe sunt? Corrupti aperiam sapiente magni eius!
-                </h2>
-                <p class="note-content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Inventore repellat minima, error sed distinctio ullam placeat
-                  libero, unde culpa fugit sunt possimus. Quae, veritatis sequi.
-                </p>
-              </div>
-            </li>
-            <li class="note-wrapper" tabindex="0">
-              <div class="note" id="">
-                <div class="note-upper-section">
-                  <div class="importent-level">
-                    <span class="circle yellow"></span>
-                    <p class="inportent-level-text">General</p>
+              </li>
+              <li class="note-wrapper" tabindex="0">
+                <div class="note" id="">
+                  <div class="note-upper-section">
+                    <div class="importent-level">
+                      <span class="circle yellow"></span>
+                      <p class="inportent-level-text">General</p>
+                    </div>
+                    <p class="date-text">02/02/2025</p>
                   </div>
-                  <p class="date-text">02/02/2025</p>
+                  <h2 class="title">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Libero quo autem, odit ducimus possimus laborum beatae
+                    excepturi aliquid neque adipisci reiciendis vitae tempora
+                    saepe sunt? Corrupti aperiam sapiente magni eius!
+                  </h2>
+                  <p class="note-content">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Inventore repellat minima, error sed distinctio ullam
+                    placeat libero, unde culpa fugit sunt possimus. Quae,
+                    veritatis sequi.
+                  </p>
                 </div>
-                <h2 class="title">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Libero quo autem, odit ducimus possimus laborum beatae
-                  excepturi aliquid neque adipisci reiciendis vitae tempora
-                  saepe sunt? Corrupti aperiam sapiente magni eius!
-                </h2>
-                <p class="note-content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Inventore repellat minima, error sed distinctio ullam placeat
-                  libero, unde culpa fugit sunt possimus. Quae, veritatis sequi.
-                </p>
-              </div>
-            </li>
-            <li class="note-wrapper" tabindex="0">
-              <div class="note" id="">
-                <div class="note-upper-section">
-                  <div class="importent-level">
-                    <span class="circle green"></span>
-                    <p class="inportent-level-text">General</p>
+              </li>
+              <li class="note-wrapper" tabindex="0">
+                <div class="note" id="">
+                  <div class="note-upper-section">
+                    <div class="importent-level">
+                      <span class="circle green"></span>
+                      <p class="inportent-level-text">General</p>
+                    </div>
+                    <p class="date-text">02/02/2025</p>
                   </div>
-                  <p class="date-text">02/02/2025</p>
+                  <h2 class="title">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Libero quo autem, odit ducimus possimus laborum beatae
+                    excepturi aliquid neque adipisci reiciendis vitae tempora
+                    saepe sunt? Corrupti aperiam sapiente magni eius!
+                  </h2>
+                  <p class="note-content">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Inventore repellat minima, error sed distinctio ullam
+                    placeat libero, unde culpa fugit sunt possimus. Quae,
+                    veritatis sequi.
+                  </p>
                 </div>
-                <h2 class="title">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Libero quo autem, odit ducimus possimus laborum beatae
-                  excepturi aliquid neque adipisci reiciendis vitae tempora
-                  saepe sunt? Corrupti aperiam sapiente magni eius!
-                </h2>
-                <p class="note-content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Inventore repellat minima, error sed distinctio ullam placeat
-                  libero, unde culpa fugit sunt possimus. Quae, veritatis sequi.
-                </p>
-              </div>
-            </li>
-            <li class="note-wrapper" tabindex="0">
-              <div class="note" id="">
-                <div class="note-upper-section">
-                  <div class="importent-level">
-                    <span class="circle red"></span>
-                    <p class="inportent-level-text">General</p>
+              </li>
+              <li class="note-wrapper" tabindex="0">
+                <div class="note" id="">
+                  <div class="note-upper-section">
+                    <div class="importent-level">
+                      <span class="circle red"></span>
+                      <p class="inportent-level-text">General</p>
+                    </div>
+                    <p class="date-text">02/02/2025</p>
                   </div>
-                  <p class="date-text">02/02/2025</p>
+                  <h2 class="title">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Libero quo autem, odit ducimus possimus laborum beatae
+                    excepturi aliquid neque adipisci reiciendis vitae tempora
+                    saepe sunt? Corrupti aperiam sapiente magni eius!
+                  </h2>
+                  <p class="note-content">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Inventore repellat minima, error sed distinctio ullam
+                    placeat libero, unde culpa fugit sunt possimus. Quae,
+                    veritatis sequi.
+                  </p>
                 </div>
-                <h2 class="title">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Libero quo autem, odit ducimus possimus laborum beatae
-                  excepturi aliquid neque adipisci reiciendis vitae tempora
-                  saepe sunt? Corrupti aperiam sapiente magni eius!
-                </h2>
-                <p class="note-content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Inventore repellat minima, error sed distinctio ullam placeat
-                  libero, unde culpa fugit sunt possimus. Quae, veritatis sequi.
-                </p>
-              </div>
-            </li>
-            <li class="note-wrapper" tabindex="0">
-              <div class="note" id="">
-                <div class="note-upper-section">
-                  <div class="importent-level">
-                    <span class="circle green"></span>
-                    <p class="inportent-level-text">General</p>
+              </li>
+              <li class="note-wrapper" tabindex="0">
+                <div class="note" id="">
+                  <div class="note-upper-section">
+                    <div class="importent-level">
+                      <span class="circle green"></span>
+                      <p class="inportent-level-text">General</p>
+                    </div>
+                    <p class="date-text">02/02/2025</p>
                   </div>
-                  <p class="date-text">02/02/2025</p>
+                  <h2 class="title">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Libero quo autem, odit ducimus possimus laborum beatae
+                    excepturi aliquid neque adipisci reiciendis vitae tempora
+                    saepe sunt? Corrupti aperiam sapiente magni eius!
+                  </h2>
+                  <p class="note-content">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Inventore repellat minima, error sed distinctio ullam
+                    placeat libero, unde culpa fugit sunt possimus. Quae,
+                    veritatis sequi.
+                  </p>
                 </div>
-                <h2 class="title">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Libero quo autem, odit ducimus possimus laborum beatae
-                  excepturi aliquid neque adipisci reiciendis vitae tempora
-                  saepe sunt? Corrupti aperiam sapiente magni eius!
-                </h2>
-                <p class="note-content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Inventore repellat minima, error sed distinctio ullam placeat
-                  libero, unde culpa fugit sunt possimus. Quae, veritatis sequi.
-                </p>
-              </div>
-            </li>
-          </ul>
-        </section>
-      </main>
-      <aside id="right-aside-section" class="right-aside-section-open"></aside>
+              </li>
+            </ul>
+          </section>
+        </main>
+        <div class="bar"></div>
+        <aside
+          id="right-aside-section"
+          class="right-aside-section-open"
+        ></aside>
+      </div>
     </div>
     <button class="add-circular-btn" title="add Categorie">+</button>
   </body>

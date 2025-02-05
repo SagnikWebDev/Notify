@@ -33,6 +33,7 @@ li {
   box-shadow: 0px 0px 3px black;
 }
 #left-aside-section {
+  min-width: 270px;
   width: clamp(270px, 30%, 300px);
   background-color: rgb(93, 93, 244);
   display: flex;
@@ -530,10 +531,10 @@ summary::-webkit-details-marker {
   overflow-y: scroll;
 }
 main {
-  width: calc(100% - 260px);
+  width: calc(100% - 270px);
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: rgb(245, 245, 245);
 }
 details {
@@ -569,4 +570,27 @@ details {
 }
 .search-input-container {
   position: relative;
+}
+.cover {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+main {
+  flex-grow: 1;
+}
+@media (min-width: 1024px) {
+  main {
+    min-width: 390px;
+    flex-grow: 0;
+  }
+  .bar {
+    width: 10px;
+    background-color: grey;
+  }
+  #right-aside-section {
+    min-width: 300px;
+    flex-grow: 1;
+    background-color: green;
+  }
 }
