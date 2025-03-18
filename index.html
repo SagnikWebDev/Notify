@@ -5,8 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/index.css" />
     <link rel="shortcut icon" href="./src/rb_favicon.png" type="image/x-icon" />
-    <script src="./js/index.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@2.8.8/dist/header.umd.min.js"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/@editorjs/simple-image@1.6.0/dist/simple-image.umd.min.js
+"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/@editorjs/list@2.0.4/dist/editorjs-list.umd.min.js
+"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
+"></script>
     <title>Notify</title>
+    <script type="module" src="./js/index.js" defer></script>
+    <script type="module" src="./js/dragFeatureFunction.js" defer></script>
+    <script type="module" src="./js/editor.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -22,13 +35,15 @@
                   aria-label="user account profile picture"
                 />
               </div>
-              <p id="profile-Name">Sagnik Ghosh</p>
+              <div class="username" aria-label="username" tabindex="-1">
+                <p id="profile-Name">Sagnik Ghosh</p>
+              </div>
             </div>
             <button
               id="mode"
               data-mode="light"
               title="mode"
-              aria-label="dark mode"
+              aria-label="Toggle dark mode"
             >
               <span class="mode-icon-wrapper light">op</span>
             </button>
@@ -46,84 +61,22 @@
                 </button>
               </div>
               <div class="categories-container-wrapper">
-                <ul role="region" aria-live="polite">
-                  <li>
-                    <div
-                      class="categories-container"
-                      data-categorie_Name="heelo"
-                    >
-                      <div class="categorie-container">
-                        <div class="categorie-text-wrapper">
-                          <input
-                            type="text"
-                            value="heelo"
-                            class="categorie-input"
-                            aria-label="categorie name"
-                            readonly
-                          />
-                          <span
-                            id="categorie-note-length"
-                            class="categorie-note-length"
-                            aria-hidden="true"
-                            >28</span
-                          >
-                        </div>
-                        <button
-                          class="remove-categorie"
-                          title="delete"
-                          aria-label="delete categorie"
-                        >
-                          del
-                        </button>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      class="categories-container"
-                      data-categorie_Name="namaste"
-                    >
-                      <div class="categorie-container">
-                        <div class="categorie-text-wrapper">
-                          <input
-                            type="text"
-                            value="namaste"
-                            class="categorie-input"
-                            aria-label="categorie name"
-                            readonly
-                          />
-                          <span
-                            id="categorie-note-length"
-                            class="categorie-note-length"
-                            aria-hidden="true"
-                            >28</span
-                          >
-                        </div>
-                        <button
-                          class="remove-categorie"
-                          title="delete"
-                          aria-label="delete categorie"
-                        >
-                          del
-                        </button>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                <ul role="region" aria-live="polite"></ul>
               </div>
             </div>
           </section>
           <section class="left-aside-third-section">
-            <div class="webApp-Name-container">
+            <div class="webApp-Name-container" aria-label="Notify icon">
               <div class="webApp-img-container">
                 <img
                   src="./src/rb_1798.png"
                   id="Notify-img"
                   alt="Notify-img"
-                  aria-label="Web Application icon"
+                  aria-label="icon"
+                  aria-hidden="true"
                 />
               </div>
-              <p class="webApp-Name" id="Notify">Notify</p>
+              <p class="webApp-Name" id="Notify" aria-hidden="true">Notify</p>
             </div>
             <button
               id="settings"
@@ -135,8 +88,7 @@
                 src="./src/profile-settings.png"
                 alt="settings"
                 class="settings-img"
-                tabindex="-1"
-                aria-hidden="true"
+                inert
               />
             </button>
           </section>
@@ -145,7 +97,10 @@
             aria-hidden="true"
             id="profile-settings"
           >
-            <form class="profile-settings-section_form">
+            <form
+              class="profile-settings-section_form"
+              onsubmit="return false;"
+            >
               <div class="profile-settings-section_upper-section">
                 <div class="user-pic-wrapper">
                   <label for="UserPic" id="UserPic-label"
@@ -153,9 +108,10 @@
                       src="./src/Profile.png"
                       id="UserPic-img"
                       alt="profile-img"
-                      aria-label="user account profile picture"
+                      aria-label="edit user account profile picture"
+                      tabindex="0"
                   /></label>
-                  <input type="file" id="UserPic" />
+                  <input type="file" value="" id="UserPic" />
                 </div>
                 <button aria-label="back" class="back-btn"><<</button>
               </div>
@@ -167,21 +123,22 @@
                     <label
                       for="user-name-input"
                       id="profile-settings-section_middle-section_userName "
-                      class="profile-settings-section_middle-section_detail-inputs"
+                      class=""
                       >UserName</label
                     >
                     <input
                       type="text"
                       id="user-name-input"
                       class="profile-settings-section_middle-section_detail-inputs"
-                      pattern="[A-Za-z0-9]+"
+                      pattern="^([a-zA-Z]{4,15}([_](?=(?:[a-zA-Z]|[0-9])))?([a-zA-Z0-9]{1,10})?)$"
+                      maxlength="15"
                       placeholder="Enter your name"
                       value=""
                     />
                     <span
                       class="messages-section"
                       data-vaild="accepted"
-                      data-error="siaoooo"
+                      data-error="UserName Not Vaild"
                     ></span>
                   </li>
                   <li class="profile-settings-section_middle-section_detail">
@@ -194,21 +151,23 @@
                       type="text"
                       id="user-name-password"
                       class="profile-settings-section_middle-section_detail-inputs"
-                      pattern="(\S)[0-9]+"
+                      pattern="^[a-zA-Z0-9]+[_$]*[a-zA-Z0-9]+$"
+                      minlength="8"
+                      maxlength="19"
                       placeholder="Enter your Password"
                       value=""
                     />
                     <span
                       class="messages-section"
                       data-vaild="accepted"
-                      data-error="siaoooo"
+                      data-error="Password Not Vaild"
                     ></span>
                   </li>
                   <li class="profile-settings-section_middle-section_detail">
                     <label
                       for="user-name-email"
                       id="profile-settings-section_middle-section_email "
-                      class="profile-settings-section_middle-section_detail-inputs"
+                      class=""
                       >Email</label
                     >
                     <input
@@ -217,12 +176,12 @@
                       class="profile-settings-section_middle-section_detail-inputs"
                       value=""
                       placeholder="Enter your Email"
-                      pattern="@gmail/.com"
+                      pattern="^[a-zA-Z0-9]+(?:[\-_%\.\+][a-zA-Z0-9]+)*@[a-zA-Z0-9\-]+\.[a-z]{2,}$"
                     />
                     <span
                       class="messages-section"
                       data-vaild="accepted"
-                      data-error="siaoooo"
+                      data-error="Email Not Vaild"
                     ></span>
                   </li>
                 </ul>
@@ -235,17 +194,46 @@
         </aside>
       </div>
       <div class="cover">
-        <main>
+        <div class="nogroup">
+          <div class="nogroup-container-wrapper">
+            <div class="nogroup-text-container">
+              <p class="nogroup-header greetingsText">Good Morning</p>
+              <p class="nogroup-date-text dateText">Sun Feb 09 2025</p>
+            </div>
+            <button
+              class="toggle"
+              title="Menu"
+              aria-label="Menu"
+              aria-expanded="false"
+              aria-controls="left-aside-section"
+            >
+              menu
+            </button>
+          </div>
+          <div class="nogroup-img-wrapper">
+            <div class="nogroup-img">
+              <img
+                src="./src/7083.jpg_wh860.jpg"
+                alt="nogroup-img"
+                class="nogroup-img"
+              />
+              <span class="nogroup-img-text">No Group Created Yet.</span>
+            </div>
+          </div>
+        </div>
+        <main class="hidden">
           <section class="main-first-section">
             <header>
               <div class="header-text-container">
-                <h1 class="header-text" role="heading" aria-label="Categorie">
-                  General
-                </h1>
+                <h1 class="header-text" aria-label="Categorie Name">General</h1>
                 <p class="date-time">
-                  Good morning
-                  <span aria-label="Current Time">09:00am</span
-                  ><span aria-label="Date">(23/10/1992)</span>
+                  <span aria-label="greetings" class="greetingsText"
+                    >Good morning</span
+                  >
+                  <span aria-label="Current Time" id="timeText">09:00am</span
+                  ><span aria-label="Current Date" class="dateText"
+                    >(23/10/1992)</span
+                  >
                 </p>
               </div>
               <button
@@ -269,16 +257,43 @@
                       src="./src/filter.png"
                       alt="filter-img"
                       class="sort-btns-imgs"
-                      tabindex="-1"
                       aria-hidden="true"
                     />
                   </summary>
-                  <div class="sort-value-container">
-                    <summary value="oldest">oldest</summary>
-                    <summary value="newest">newest</summary>
-                    <summary value="high">high</summary>
-                    <summary value="low">low</summary>
-                    <summary value="medium">medium</summary>
+                  <div class="sort-value-container" id="filter">
+                    <summary
+                      class="filter-options"
+                      data-value="General"
+                      tabindex="0"
+                      aria-selected="false"
+                    >
+                      General
+                    </summary>
+                    <summary
+                      class="filter-options"
+                      data-value="Medium"
+                      tabindex="0"
+                      aria-selected="false"
+                    >
+                      medium
+                    </summary>
+                    <summary
+                      class="filter-options"
+                      data-value="Low"
+                      tabindex="0"
+                      aria-selected="false"
+                    >
+                      low
+                    </summary>
+                    <summary
+                      class="filter-options"
+                      data-value="default"
+                      tabindex="0"
+                      aria-selected="true"
+                      id="filter-options-lastchild"
+                    >
+                      default
+                    </summary>
                   </div>
                 </details>
                 <details name="User_tags" title="Tags" id="User-tags">
@@ -287,12 +302,17 @@
                       src="./src/tag.png"
                       alt="tag-img"
                       class="sort-btns-imgs"
-                      tabindex="-1"
                       aria-hidden="true"
                     />
                   </summary>
-                  <div class="sort-value-container">
-                    <summary value="oldest">No Tags</summary>
+                  <div class="sort-value-container" id="filterTags">
+                    <summary
+                      class="filterTags-options"
+                      data-value=""
+                      tabindex="0"
+                    >
+                      No Tags
+                    </summary>
                   </div>
                 </details>
               </div>
@@ -303,177 +323,132 @@
                 placeholder="Search Notes..."
                 class="search-input"
               />
-              <button class="search-btn" title="Search" aria-label="search">
+              <button
+                class="search-btn"
+                title="Search"
+                aria-label="search"
+                data-searchable=""
+              >
                 <img
                   src="./src/search.png"
                   alt="search-btn-logo"
                   class="search-btn-pic"
-                  tabindex="-1"
                   aria-hidden="true"
                 />
               </button>
+              <ul class="suggestions-container"></ul>
             </div>
             <button
               class="add-Note-btn"
               title="Add Notes"
               aria-label="Add Notes"
             >
-              <span
-                class="add-Note-btn_plus-icon"
-                tabindex="-1"
-                aria-hidden="true"
-                >+</span
+              <span class="add-Note-btn_plus-icon" aria-hidden="true">+</span
               ><span>ADD NOTE</span>
             </button>
           </section>
           <section class="main-third-section">
-            <ul aria-live="polite" role="region">
-              <li class="note-wrapper" tabindex="0">
-                <div class="note" id="">
-                  <div class="note-upper-section">
-                    <div class="importent-level">
-                      <span class="circle red"></span>
-                      <p class="inportent-level-text">General</p>
-                    </div>
-                    <p class="date-text">02/02/2025</p>
-                  </div>
-                  <h2 class="title">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Libero quo autem, odit ducimus possimus laborum beatae
-                    excepturi aliquid neque adipisci reiciendis vitae tempora
-                    saepe sunt? Corrupti aperiam sapiente magni eius!
-                  </h2>
-                  <p class="note-content">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Inventore repellat minima, error sed distinctio ullam
-                    placeat libero, unde culpa fugit sunt possimus. Quae,
-                    veritatis sequi.
-                  </p>
-                </div>
-              </li>
-              <li class="note-wrapper" tabindex="0">
-                <div class="note" id="">
-                  <div class="note-upper-section">
-                    <div class="importent-level">
-                      <span class="circle red"></span>
-                      <p class="inportent-level-text">General</p>
-                    </div>
-                    <p class="date-text">02/02/2025</p>
-                  </div>
-                  <h2 class="title">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Libero quo autem, odit ducimus possimus laborum beatae
-                    excepturi aliquid neque adipisci reiciendis vitae tempora
-                    saepe sunt? Corrupti aperiam sapiente magni eius!
-                  </h2>
-                  <p class="note-content">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Inventore repellat minima, error sed distinctio ullam
-                    placeat libero, unde culpa fugit sunt possimus. Quae,
-                    veritatis sequi.
-                  </p>
-                </div>
-              </li>
-              <li class="note-wrapper" tabindex="0">
-                <div class="note" id="">
-                  <div class="note-upper-section">
-                    <div class="importent-level">
-                      <span class="circle yellow"></span>
-                      <p class="inportent-level-text">General</p>
-                    </div>
-                    <p class="date-text">02/02/2025</p>
-                  </div>
-                  <h2 class="title">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Libero quo autem, odit ducimus possimus laborum beatae
-                    excepturi aliquid neque adipisci reiciendis vitae tempora
-                    saepe sunt? Corrupti aperiam sapiente magni eius!
-                  </h2>
-                  <p class="note-content">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Inventore repellat minima, error sed distinctio ullam
-                    placeat libero, unde culpa fugit sunt possimus. Quae,
-                    veritatis sequi.
-                  </p>
-                </div>
-              </li>
-              <li class="note-wrapper" tabindex="0">
-                <div class="note" id="">
-                  <div class="note-upper-section">
-                    <div class="importent-level">
-                      <span class="circle green"></span>
-                      <p class="inportent-level-text">General</p>
-                    </div>
-                    <p class="date-text">02/02/2025</p>
-                  </div>
-                  <h2 class="title">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Libero quo autem, odit ducimus possimus laborum beatae
-                    excepturi aliquid neque adipisci reiciendis vitae tempora
-                    saepe sunt? Corrupti aperiam sapiente magni eius!
-                  </h2>
-                  <p class="note-content">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Inventore repellat minima, error sed distinctio ullam
-                    placeat libero, unde culpa fugit sunt possimus. Quae,
-                    veritatis sequi.
-                  </p>
-                </div>
-              </li>
-              <li class="note-wrapper" tabindex="0">
-                <div class="note" id="">
-                  <div class="note-upper-section">
-                    <div class="importent-level">
-                      <span class="circle red"></span>
-                      <p class="inportent-level-text">General</p>
-                    </div>
-                    <p class="date-text">02/02/2025</p>
-                  </div>
-                  <h2 class="title">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Libero quo autem, odit ducimus possimus laborum beatae
-                    excepturi aliquid neque adipisci reiciendis vitae tempora
-                    saepe sunt? Corrupti aperiam sapiente magni eius!
-                  </h2>
-                  <p class="note-content">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Inventore repellat minima, error sed distinctio ullam
-                    placeat libero, unde culpa fugit sunt possimus. Quae,
-                    veritatis sequi.
-                  </p>
-                </div>
-              </li>
-              <li class="note-wrapper" tabindex="0">
-                <div class="note" id="">
-                  <div class="note-upper-section">
-                    <div class="importent-level">
-                      <span class="circle green"></span>
-                      <p class="inportent-level-text">General</p>
-                    </div>
-                    <p class="date-text">02/02/2025</p>
-                  </div>
-                  <h2 class="title">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Libero quo autem, odit ducimus possimus laborum beatae
-                    excepturi aliquid neque adipisci reiciendis vitae tempora
-                    saepe sunt? Corrupti aperiam sapiente magni eius!
-                  </h2>
-                  <p class="note-content">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Inventore repellat minima, error sed distinctio ullam
-                    placeat libero, unde culpa fugit sunt possimus. Quae,
-                    veritatis sequi.
-                  </p>
-                </div>
-              </li>
-            </ul>
+            <ul
+              aria-live="polite"
+              role="region"
+              class="note-wrapper-container hidden"
+            ></ul>
+            <div class="empty-img-section-wrapper">
+              <div class="empty-img-section">
+                <img src="./src/pencil.png" class="empty-img" alt="" />
+                <span class="empty-img-text">No Notes Yet.</span>
+              </div>
+            </div>
           </section>
+          <div class="bar-left-wrapper">
+            <img
+              src="./src/rb_favicon.png"
+              class="notifylogo"
+              alt="notify-logo"
+            />
+          </div>
         </main>
-        <div class="bar"></div>
+        <div class="bar" draggable="true"></div>
         <aside
           id="right-aside-section"
-          class="right-aside-section-open"
-        ></aside>
+          class="right-aside-section-open hidden"
+          data-exists="false"
+          aria-label="Note Editor Open"
+        >
+          <div class="right-aside-section-upper-section">
+            <details
+              class="select-level-container"
+              data-color="red"
+              data-text="General"
+            >
+              <summary
+                class="select-level-options"
+                id="select-level-options-first-element"
+                aria-label="inportent level option General"
+                aria-selected="true"
+                tabindex="0"
+              >
+                <span class="circle red" id="red"></span>
+                <p class="inportent-level-text" tabindex="-1">General</p>
+              </summary>
+              <div class="select-level-options-cover">
+                <summary
+                  class="select-level-options select-level-secondery-options"
+                  aria-label="inportent level option medium"
+                  tabindex="0"
+                  aria-selected="false"
+                >
+                  <span class="circle yellow" id="yellow"></span>
+                  <p class="inportent-level-text" tabindex="-1">medium</p>
+                </summary>
+                <summary
+                  class="select-level-options select-level-secondery-options"
+                  aria-label="inportent level option low"
+                  tabindex="0"
+                  aria-selected="false"
+                >
+                  <span class="circle green" id="green"></span>
+                  <p class="inportent-level-text" tabindex="-1">low</p>
+                </summary>
+              </div>
+            </details>
+            <div class="right-aside-section-upper-section-buttons-container">
+              <button class="note-back-btn" aria-label="Back from note editor">
+                back
+              </button>
+              <button class="note-del-btn" aria-label="delete note">del</button>
+              <button class="note-save-btn" aria-label="save note">save</button>
+            </div>
+          </div>
+          <div class="content-heeder-section">
+            <input
+              type="text"
+              class="content-heeder-section-header"
+              placeholder="Enter The Title"
+              value=""
+              required
+            />
+            <div class="tags-section">
+              <button class="add-tags-btn" aria-label="add tags">
+                <img
+                  src="./src/tag.png"
+                  alt="tag-img"
+                  class="tag-btn-img"
+                  inert
+                />
+              </button>
+              <div class="tags-container" aria-live="polite"></div>
+            </div>
+          </div>
+          <div id="editor"></div>
+          <div class="bar-right-wrapper">
+            <img
+              src="./src/rb_favicon.png"
+              class="notifylogo"
+              alt="notify-logo"
+            />
+          </div>
+        </aside>
       </div>
     </div>
     <button class="add-circular-btn" title="add Categorie">+</button>
