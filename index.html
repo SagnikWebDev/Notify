@@ -16,6 +16,13 @@ https://cdn.jsdelivr.net/npm/@editorjs/list@2.0.4/dist/editorjs-list.umd.min.js
     <script src="
 https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
 "></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Notify</title>
     <script type="module" src="./js/index.js" defer></script>
     <script type="module" src="./js/dragFeatureFunction.js" defer></script>
@@ -45,7 +52,9 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
               title="mode"
               aria-label="Toggle dark mode"
             >
-              <span class="mode-icon-wrapper light">op</span>
+              <span class="mode-icon-wrapper light" tabindex="-1"
+                ><i class="fa-regular fa-sun" tabindex="-1"></i
+              ></span>
             </button>
           </section>
           <section class="left-aside-section_second-section">
@@ -207,17 +216,32 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
               aria-expanded="false"
               aria-controls="left-aside-section"
             >
-              menu
+              <!-- menu -->
+              <i class="fa-solid fa-bars"></i>
             </button>
           </div>
           <div class="nogroup-img-wrapper">
             <div class="nogroup-img">
-              <img
+              <!-- <img
                 src="./src/7083.jpg_wh860.jpg"
                 alt="nogroup-img"
                 class="nogroup-img"
-              />
-              <span class="nogroup-img-text">No Group Created Yet.</span>
+              /> -->
+              <a
+                href="https://www.flaticon.com/free-icons/plagiarism"
+                title="plagiarism icons"
+                class="nogroup-img-link"
+                aria-describedby="Nogroup-text"
+                aria-label="no categorie added img link"
+                ><img
+                  src="./src/plagiarism.png"
+                  class="nogroup-img"
+                  alt="no categorie added img"
+                  tabindex="-1"
+              /></a>
+              <span class="nogroup-img-text" id="Nogroup-text" tabindex="0"
+                >No Group Created Yet.</span
+              >
             </div>
           </div>
         </div>
@@ -225,13 +249,22 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
           <section class="main-first-section">
             <header>
               <div class="header-text-container">
-                <h1 class="header-text" aria-label="Categorie Name">General</h1>
+                <h1
+                  class="header-text"
+                  aria-label="Categorie Name"
+                  tabindex="0"
+                >
+                  General
+                </h1>
                 <p class="date-time">
-                  <span aria-label="greetings" class="greetingsText"
+                  <span
+                    aria-label="greetings"
+                    tabindex="0"
+                    class="greetingsText"
                     >Good morning</span
-                  >
-                  <span aria-label="Current Time" id="timeText">09:00am</span
-                  ><span aria-label="Current Date" class="dateText"
+                  ><span aria-label="Current Time" tabindex="0" id="timeText"
+                    >09:00am</span
+                  ><span aria-label="Current Date" tabindex="0" class="dateText"
                     >(23/10/1992)</span
                   >
                 </p>
@@ -243,22 +276,30 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
                 aria-expanded="false"
                 aria-controls="left-aside-section"
               >
-                menu
+                <!-- menu -->
+                <i class="fa-solid fa-bars"></i>
               </button>
             </header>
           </section>
           <section class="main-second-section">
             <div class="main-second-section_first-section">
-              <p id="note-number">28 Notes</p>
+              <p id="note-number" tabindex="0">28 Notes</p>
               <div class="sorting-btn-container">
-                <details name="User_Sort-data" id="User-Sort" title="sort">
-                  <summary aria-label="Sort" role="button">
-                    <img
+                <details
+                  name="User_Sort-data"
+                  id="User-Sort"
+                  title="sort"
+                  aria-label="Sort"
+                  role="button"
+                >
+                  <summary>
+                    <!-- <img
                       src="./src/filter.png"
                       alt="filter-img"
                       class="sort-btns-imgs"
                       aria-hidden="true"
-                    />
+                    /> -->
+                    <span><i class="fa-solid fa-filter"></i></span>
                   </summary>
                   <div class="sort-value-container" id="filter">
                     <summary
@@ -296,14 +337,20 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
                     </summary>
                   </div>
                 </details>
-                <details name="User_tags" title="Tags" id="User-tags">
-                  <summary aria-label="Filter By Tags" role="button">
-                    <img
+                <details
+                  name="User_tags"
+                  title="Tags"
+                  id="User-tags"
+                  aria-label="Filter By Tags"
+                >
+                  <summary>
+                    <!-- <img
                       src="./src/tag.png"
                       alt="tag-img"
                       class="sort-btns-imgs"
                       aria-hidden="true"
-                    />
+                    /> -->
+                    <span><i class="fa-solid fa-tags"></i></span>
                   </summary>
                   <div class="sort-value-container" id="filterTags">
                     <summary
@@ -329,12 +376,8 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
                 aria-label="search"
                 data-searchable=""
               >
-                <img
-                  src="./src/search.png"
-                  alt="search-btn-logo"
-                  class="search-btn-pic"
-                  aria-hidden="true"
-                />
+                <!-- <img src="./src/search.png" alt="search-btn-logo" class="search-btn-pic" aria-hidden="true">  -->
+                <i class="fa-solid fa-magnifying-glass"></i>
               </button>
               <ul class="suggestions-container"></ul>
             </div>
@@ -356,7 +399,7 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
             <div class="empty-img-section-wrapper">
               <div class="empty-img-section">
                 <img src="./src/pencil.png" class="empty-img" alt="" />
-                <span class="empty-img-text">No Notes Yet.</span>
+                <span class="empty-img-text" tabindex="0">No Notes Yet.</span>
               </div>
             </div>
           </section>
@@ -430,12 +473,13 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
             />
             <div class="tags-section">
               <button class="add-tags-btn" aria-label="add tags">
-                <img
+                <!-- <img
                   src="./src/tag.png"
                   alt="tag-img"
                   class="tag-btn-img"
                   inert
-                />
+                /> -->
+                <span><i class="fa-solid fa-tag"></i></span>
               </button>
               <div class="tags-container" aria-live="polite"></div>
             </div>
@@ -452,5 +496,17 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
       </div>
     </div>
     <button class="add-circular-btn" title="add Categorie">+</button>
+    <div class="loader-section">
+      <div class="loader-component">
+        <img
+          src="./src/rb_favicon.png"
+          class="loader-notify-img"
+          alt="loader notify img"
+        />
+        <div class="loader-wrapper">
+          <div class="loader"></div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

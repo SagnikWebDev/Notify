@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 *,
 ::after,
 ::before {
   margin: 0;
   box-sizing: border-box;
+}
+* {
+  font-family: "Roboto", sans-serif;
 }
 :root {
   --bg-color1: rgb(93, 93, 244);
@@ -58,6 +62,7 @@ li {
   background-color: transparent;
   border: none;
   color: inherit;
+  font-size: 20px;
 }
 .add-circular-btn {
   display: none;
@@ -78,10 +83,10 @@ li {
 }
 /* ######################### Some changing by events  #######################*/
 /* .light {
-  transform: translateX(-4px);
+  animation: rotate 740ms ease-in-out;
 }
 .dark {
-  transform: translateX(11px);
+  animation: rotate 740ms ease-in-out;
 } */
 .hidden {
   display: none !important;
@@ -138,6 +143,17 @@ li {
   background-color: var(--bg-color2);
   border: 1px solid var(--border-color);
   padding-inline: 2px !important;
+  text-align: center;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.4;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 1;
+  }
 }
 .mode-icon-wrapper {
   width: 20px;
@@ -149,6 +165,9 @@ li {
   align-items: center;
   color: var(--mode-color);
   transition: all 300ms ease-in;
+  text-align: center;
+  padding-top: 1.5px;
+  padding-right: 0.5px;
 }
 
 /* ########################### left-aside-section_second-section ######################### */
@@ -210,6 +229,7 @@ li {
 .remove-categorie {
   margin-left: 50px;
   transition: all 250ms ease-in-out;
+  color: white;
 }
 .categories-container:hover .remove-categorie {
   margin-left: 0px;
@@ -430,10 +450,15 @@ li {
     display: block !important;
   }
   .remove-categorie {
-    margin-left: 110px;
+    margin-left: 150px;
   }
   main {
     width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color2);
+    color: var(--color2);
+    flex-grow: 1 !important;
   }
   .add-circular-btn {
     display: block !important;
@@ -578,12 +603,6 @@ summary::-webkit-details-marker {
   padding-block: 15px;
 }
 /* change */
-/* .note:hover {
-  background-color: rgb(232, 232, 232);
-}
-.note:active {
-  background-color: rgb(232, 232, 232);
-} */
 .note:hover {
   background-color: var(--note-hover-color);
 }
@@ -608,14 +627,7 @@ summary::-webkit-details-marker {
   flex: 1;
 }
 /* change */
-main {
-  /* width: calc(100% - 270px); */
-  display: flex;
-  flex-direction: column;
-  /* height: 100vh; */
-  background-color: var(--bg-color2);
-  color: var(--color2);
-}
+/* bar section............. */
 details {
   position: relative;
 }
@@ -632,33 +644,21 @@ details {
   padding-inline: 10px;
 }
 .sort-value-container > *:hover {
-  /* background-color: rgb(232, 232, 232); */
   background-color: var(--sortbtnvalues-hover-color);
 }
 .search-input {
-  /* padding-right: 45px; */
-  /* border: none; */
   width: 99%;
 }
 .search-input-container {
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
   gap: 1px;
 }
-/* .search-btn {
-} */
 .suggestions-container {
   position: absolute;
   width: 100%;
   top: calc(100% + 5px);
   color: black;
-  /*    
-  overflow-y: scroll;
-  transform: translateY(204px); */
-  /* border: 1px solid black; */
-  /* left: 0; */
-  /* display: flex; */
 }
 .suggestions-container > li {
   width: 100%;
@@ -685,6 +685,9 @@ details {
 .search-btn-pic {
   width: 20px;
 }
+.search-btn {
+  width: 40px;
+}
 .search-input-container {
   position: relative;
 }
@@ -693,9 +696,6 @@ details {
   display: flex;
   height: 100vh;
   overflow: hidden;
-}
-main {
-  flex-grow: 1;
 }
 /* .bar,
 #right-aside-section {
@@ -713,10 +713,6 @@ main {
   background-color: var(--bg-color2);
 }
 
-/* main > *,
-.search-input {
-  color: var(--color) !important;
-} */
 #right-aside-section > *,
 .content-heeder-section-header,
 .right-aside-section-upper-section-buttons-container > * {
@@ -727,17 +723,6 @@ main {
   border: 1px solid var(--border-color);
   cursor: pointer;
 }
-/* .profile-settings-section_form,
-.profile-settings-section_middle-section_detail-inputs,
-.back-btn,
-.Save-btn {
-  color: white !important;
-} */
-/* @media (max-width < 1440px) {
-  .cover {
-    width: 100%;
-  }
-} */
 @media (min-width: 1440px) {
   main {
     flex-grow: 1;
@@ -844,6 +829,8 @@ main {
   cursor: pointer;
   border: none;
   background-color: inherit;
+  border: 1px solid var(--color2);
+  color: var(--color2);
 }
 .content-heeder-section-header {
   width: 100%;
@@ -942,8 +929,8 @@ main {
   border-bottom: 1px solid var(--border-color);
 }
 .nogroup-img {
-  min-width: 200px;
-  width: 50%;
+  min-width: 150px;
+  width: 40%;
 }
 .nogroup-img {
   display: flex;
@@ -954,6 +941,11 @@ main {
 }
 .nogroup-img-text {
   font-size: 25px;
+}
+.nogroup-img-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* change */
 .nogroup {
@@ -991,7 +983,58 @@ main {
 .filterTags-options-value-input {
   margin-top: 1px;
 }
-.bar img {
-  user-drag: none;
-  -webkit-user-drag: none;
+.categorie-input::placeholder {
+  color: rgba(0, 0, 0, 0.275);
+}
+
+/* loader section...................................... */
+.loader-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--bg-color2);
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader-component {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.loader-notify-img {
+  min-width: 75px;
+  width: 13%;
+}
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 60px;
+  max-width: 100px;
+  width: 13%;
+}
+.loader {
+  width: 100%;
+  aspect-ratio: 4;
+  --_g: no-repeat radial-gradient(circle closest-side, var(--color2) 90%, #0000);
+  background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+  background-size: calc(100% / 3) 100%;
+  animation: l7 1s infinite linear;
+}
+@keyframes l7 {
+  33% {
+    background-size: calc(100% / 3) 0%, calc(100% / 3) 100%, calc(100% / 3) 100%;
+  }
+  50% {
+    background-size: calc(100% / 3) 100%, calc(100% / 3) 0%, calc(100% / 3) 100%;
+  }
+  66% {
+    background-size: calc(100% / 3) 100%, calc(100% / 3) 100%, calc(100% / 3) 0%;
+  }
 }

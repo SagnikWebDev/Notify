@@ -80,7 +80,10 @@ addCircularBtn.addEventListener("click", (event) => {
   renderCategorieComponent();
 });
 categorieContainerElement.addEventListener("click", (event) => {
-  const targetElement = event.target;
+  event.stopPropagation();
+  let targetElement = event.target;
+  if (targetElement.className.includes("fa-trash"))
+    targetElement = targetElement.parentElement;
   if (targetElement.className.includes("remove-categorie")) {
     const categorieElement = targetElement.parentElement.parentElement;
     const categorieName = categorieElement.dataset.categorie_Name;
@@ -229,9 +232,11 @@ categorieContainerElement.addEventListener("dblclick", (event) => {
     );
   }
 });
-categorieContainerElement.addEventListener("click", (e) => {
-  const targetElement = e.target;
+categorieContainerElement.addEventListener("click", (event) => {
+  let targetElement = event.target;
   let categorieElement = undefined;
+  if (targetElement.className.includes("fa-trash"))
+    targetElement = targetElement.parentElement;
   if (!targetElement.className.includes("remove-categorie")) {
     if (
       targetElement.className.includes("categorie-input") ||
@@ -537,12 +542,14 @@ tagElementContainer.addEventListener("keyup", (event) => {
         const tagId = tagNameElement.id;
         tags.updateTagName(tagId, tagNameElementValue);
         tagNameElement.setAttribute("contenteditable", "false");
+        tagElement.setAttribute("aria-label", `tagname ${tagNameElementValue}`);
       } else {
         tagNameElement.setAttribute("contenteditable", "false");
         tagElement.dataset.complete = "true";
         const tag = tags.addTagByName(tagNameElementValue);
         const tagId = tag.getId;
         tagNameElement.setAttribute("id", tagId);
+        tagElement.setAttribute("aria-label", `tagname ${tagNameElementValue}`);
       }
     } else {
       tagElement.remove();
@@ -731,10 +738,14 @@ UserProfileDataSaveBtn.addEventListener("click", (e) => {
     data.storeInLocalStorage();
   }
 });
+// change the UserPic img with change the #UserPic input value changes ( it needs because before after clicking and changes by the userpic input we get the value but UserPic img never changes )..
 const UserProfileImgChangeBtn = document.querySelector("#UserPic");
 UserProfileImgChangeBtn.addEventListener("change", (event) => {
+  // first we have to get the target element by clicking it so,....
   let UserImgComponent = event.target;
+  // then we have to check the type of imgvalue of the target element.....
   if (Profile.CheckProfileUserInputsValues(UserImgComponent).testValue) {
+    // then we have to check if it have the value not....
     if (
       UserImgComponent.value &&
       UserImgComponent.files &&
@@ -753,6 +764,7 @@ UserProfileImgChangeBtn.addEventListener("change", (event) => {
   }
 });
 
+// functions for change the mode.......
 function addPropertiesOnRootForMode(modeValue) {
   const Root = document.querySelector(":root");
   const variables = [
@@ -805,9 +817,9 @@ function addPropertiesOnRootForMode(modeValue) {
     }
   }
 }
-
-const mode = document.querySelector("#mode");
-mode.addEventListener("click", (event) => {
+function changeModes() {
+  // changemodes function made for change modes by query the mode.dataset by itself
+  const mode = document.querySelector("#mode");
   const modeIconWrapper = document.querySelector(".mode-icon-wrapper");
   mode.dataset.mode == "light"
     ? (mode.dataset.mode = "dark")
@@ -815,11 +827,47 @@ mode.addEventListener("click", (event) => {
   let modeValue = mode.dataset.mode;
   if (modeValue == "light") {
     modeIconWrapper.style = "transform: translateX(0px);";
+    modeIconWrapper.firstElementChild.style =
+      "animation: rotate 740ms ease-in-out;";
+    modeIconWrapper.firstElementChild.className = "fa-regular fa-sun";
     addPropertiesOnRootForMode("light");
     mode.setAttribute("aria-label", "Toggle dark mode");
   } else {
     modeIconWrapper.style = "transform: translateX(15px);";
+    modeIconWrapper.firstElementChild.className = "fa-solid fa-moon";
+    modeIconWrapper.firstElementChild.style =
+      "animation: rotate 740ms ease-in-out;";
     addPropertiesOnRootForMode("dark");
     mode.setAttribute("aria-label", "Toggle light mode");
   }
+  setTimeout(() => {
+    modeIconWrapper.firstElementChild.style = "animation: none;";
+  }, 750);
+}
+function changeModesByMatches(matches) {
+  // if matches true its means the device has darkmode so, we have to change mode.dataset to "light" before the changemode function execute so, we get the darkmode changes.
+  matches ? (mode.dataset.mode = "light") : (mode.dataset.mode = "dark");
+  changeModes();
+}
+// change mode by clicking mode btn.....
+const mode = document.querySelector("#mode");
+mode.addEventListener("click", (event) => {
+  changeModes();
 });
+// we have to change mode of website before page loads......
+const matches = window.matchMedia("(prefers-color-scheme: dark)").matches;
+changeModesByMatches(matches);
+// we have to change mode of website with user device's darkmode changes.....
+window
+  .matchMedia("(prefers-color-scheme: dark)")
+  .addEventListener("change", (event) => {
+    const matches = event.matches;
+    changeModesByMatches(matches);
+  });
+// loader section.....
+const loaderSection = document.querySelector(".loader-section");
+const loader = document.querySelector(".loader");
+setTimeout(() => {
+  loaderSection.style = "display:none;";
+  loader.style = "animation:none;";
+}, 1500);

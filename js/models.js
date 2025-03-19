@@ -969,6 +969,7 @@ export class Tags {
   createTagComponent(TagArguments = { exists: false, tag: [] }) {
     const tagElement = document.createElement("span");
     tagElement.setAttribute("class", "tag");
+    tagElement.setAttribute("tabindex", "0");
     const spanElement = document.createElement("span");
     spanElement.innerHTML = "#";
     spanElement.setAttribute("tabindex", "-1");
@@ -1075,6 +1076,7 @@ export class Categories {
     categorieTextWrapper.setAttribute("class", "categorie-text-wrapper");
     const categorieInput = document.createElement("input");
     categorieInput.setAttribute("type", "text");
+    categorieInput.setAttribute("placeholder", "categorie name");
     categorieInput.setAttribute("class", "categorie-input");
     if (readOnly) categorieInput.readOnly = true;
     if (Name) {
@@ -1082,7 +1084,7 @@ export class Categories {
       categorieInput.setAttribute("aria-label", `categorie name ${Name}`);
     } else categorieInput.setAttribute("aria-label", "categorie name");
     const deleteBtn = document.createElement("button");
-    deleteBtn.innerHTML = "del";
+    deleteBtn.innerHTML = `<i class="fa-solid fa-trash"></i>`;
     deleteBtn.setAttribute("class", "remove-categorie");
     deleteBtn.setAttribute("title", "delete");
     deleteBtn.setAttribute("aria-label", "delete categorie");
