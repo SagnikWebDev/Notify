@@ -597,7 +597,7 @@ summary::-webkit-details-marker {
 }
 .sort-value-container {
   position: absolute;
-  left: -50px;
+  left: -70px;
   background-color: var(--bg-color2);
   box-shadow: 0px 0px 3px var(--border-color);
   color: var(--color2);
@@ -833,6 +833,17 @@ details {
   background-color: var(--bg-color2);
   border: 1px solid var(--border-color);
   cursor: pointer;
+  width: 30px;
+  height: 25px;
+  position: relative;
+  z-index: 1;
+}
+.notes-btns-icons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
 }
 .select-level-container {
   width: 90px;

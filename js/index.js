@@ -327,7 +327,6 @@ noteSaveBtn.addEventListener("click", async (event) => {
         document.querySelector("#right-aside-section").dataset.Id = note.getId;
       }
       note.exists = true;
-      tags.createNew();
       const { title, content, categorieName, date, importantLevel } = note;
       const noteElement = notes.CreateNoteComponent(
         title,
@@ -367,6 +366,7 @@ noteSaveBtn.addEventListener("click", async (event) => {
       );
       data.storeInLocalStorage();
     }
+    tags.createNew();
   } catch (error) {
     console.log(error);
     throw new Error(error);
@@ -659,6 +659,7 @@ function getTagNamesFromSortTagBtn() {
     const targetElement = event.target;
     if (!sortTagsBtn.open) {
       const tagNames = notes.getAllTags();
+      console.log(tagNames);
       notes.addSortTagOptionElements(tagNames);
       if (filterBtn.open) filterBtn.removeAttribute("open");
     }

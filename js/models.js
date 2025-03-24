@@ -828,14 +828,14 @@ export class Notes {
   }
   addSortTagOptionElements(tags = []) {
     if (tags[0]) {
-      document.querySelector("#filterTags").firstElementChild.remove();
+      document.querySelector("#filterTags").innerHTML = "";
       tags.forEach((Name) => {
         document
           .querySelector("#filterTags")
           .appendChild(this.createSortTagOptionElement(Name));
       });
     } else {
-      document.querySelector("#filterTags").firstElementChild.remove();
+      document.querySelector("#filterTags").innerHTML = "";
       document
         .querySelector("#filterTags")
         .appendChild(this.createSortTagOptionElement());
@@ -1522,7 +1522,6 @@ export class toastMessage {
       (object) => object.type == type
     );
     const toastMessageObject = toastMessageType[0];
-    console.log(toastMessageObject, type);
     const toastmessageWrapper = document.createElement("div");
     toastmessageWrapper.setAttribute("class", "toastmessage-wrapper");
     toastmessageWrapper.setAttribute("id", toastMessageObject.toastMessageId);
