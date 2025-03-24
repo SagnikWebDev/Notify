@@ -83,8 +83,7 @@ export function toggleSearch() {
 }
 export function toggleCross() {
   firstElementChild.remove();
-  searchBtn.innerHTML =
-    '<img src="./src/search.png" alt="search-btn-logo" class="search-btn-pic" tabindex="-1" aria-hidden="true">';
+  searchBtn.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i>';
   searchBtn.setAttribute("class", "search-btn");
 }
 export function ChangeSearchCross() {

@@ -1,4 +1,11 @@
-import { Notes, Categories, Tags, profile, Data } from "./models.js";
+import {
+  Notes,
+  Categories,
+  Tags,
+  profile,
+  Data,
+  toastMessage,
+} from "./models.js";
 import { editor } from "./editor.js";
 import {
   toggleNoGroupSection,
@@ -85,6 +92,7 @@ categorieContainerElement.addEventListener("click", (event) => {
   if (targetElement.className.includes("fa-trash"))
     targetElement = targetElement.parentElement;
   if (targetElement.className.includes("remove-categorie")) {
+    // deleting categorie by clicking..............
     const categorieElement = targetElement.parentElement.parentElement;
     const categorieName = categorieElement.dataset.categorie_Name;
     const categorieId = categorieElement.id;
@@ -129,6 +137,40 @@ categorieContainerElement.addEventListener("click", (event) => {
       updateAriaSelectedOnCategorie(categorie.Name);
       resetAriaSelectedOnFilterBtn();
     }
+  } else {
+    // load all thing of clicking categorie.......
+    let categorieElement = undefined;
+    if (
+      targetElement.className.includes("categorie-input") ||
+      targetElement.className.includes("categorie-note-length")
+    ) {
+      categorieElement =
+        targetElement.parentElement.parentElement.parentElement;
+      const categorieName = categorieElement.dataset.categorie_Name;
+      categories.switchToCategorieByCilckbtn(categorieName);
+    }
+    if (targetElement.className.includes("categorie-container")) {
+      categorieElement = targetElement.parentElement;
+      const categorieName = categorieElement.dataset.categorie_Name;
+      categories.switchToCategorieByCilckbtn(categorieName);
+    }
+    if (targetElement.className.includes("categorie-text-wrapper")) {
+      categorieElement = targetElement.parentElement.parentElement;
+      const categorieName = categorieElement.dataset.categorie_Name;
+      categories.switchToCategorieByCilckbtn(categorieName);
+    }
+    if (targetElement.className.includes("categorieListTag")) {
+      categorieElement = targetElement.firstElementChild;
+      const categorieName = categorieElement.dataset.categorie_Name;
+      categories.switchToCategorieByCilckbtn(categorieName);
+    }
+    const categorieId = categorieElement.id;
+    const { value: categorie } = categories.findCategorieById(categorieId);
+    const { Notes } = categorie;
+    notes.setNotes = Notes;
+    notes.resetSearchComponent();
+    updateAriaSelectedOnCategorie(categorie.Name);
+    resetAriaSelectedOnFilterBtn();
   }
 });
 categorieContainerElement.addEventListener("keyup", (event) => {
@@ -202,8 +244,11 @@ categorieContainerElement.addEventListener("keyup", (event) => {
             );
             data.storeInLocalStorage();
           } else {
-            window.alert(
-              "Categorie Name already Exists, please Change the Name."
+            new toastMessage().appendtoastMessageElement(
+              new toastMessage().createElement({
+                type: "failed",
+                text: `${categorieInputElementValue} already Exists!`,
+              })
             );
             throw new Error("already Exists!!!");
           }
@@ -230,45 +275,6 @@ categorieContainerElement.addEventListener("dblclick", (event) => {
       categorieInputElementValue.length,
       categorieInputElementValue.length
     );
-  }
-});
-categorieContainerElement.addEventListener("click", (event) => {
-  let targetElement = event.target;
-  let categorieElement = undefined;
-  if (targetElement.className.includes("fa-trash"))
-    targetElement = targetElement.parentElement;
-  if (!targetElement.className.includes("remove-categorie")) {
-    if (
-      targetElement.className.includes("categorie-input") ||
-      targetElement.className.includes("categorie-note-length")
-    ) {
-      categorieElement =
-        targetElement.parentElement.parentElement.parentElement;
-      const categorieName = categorieElement.dataset.categorie_Name;
-      categories.switchToCategorieByCilckbtn(categorieName);
-    }
-    if (targetElement.className.includes("categorie-container")) {
-      categorieElement = targetElement.parentElement;
-      const categorieName = categorieElement.dataset.categorie_Name;
-      categories.switchToCategorieByCilckbtn(categorieName);
-    }
-    if (targetElement.className.includes("categorie-text-wrapper")) {
-      categorieElement = targetElement.parentElement.parentElement;
-      const categorieName = categorieElement.dataset.categorie_Name;
-      categories.switchToCategorieByCilckbtn(categorieName);
-    }
-    if (targetElement.className.includes("categorieListTag")) {
-      categorieElement = targetElement.firstElementChild;
-      const categorieName = categorieElement.dataset.categorie_Name;
-      categories.switchToCategorieByCilckbtn(categorieName);
-    }
-    const categorieId = categorieElement.id;
-    const { value: categorie } = categories.findCategorieById(categorieId);
-    const { Notes } = categorie;
-    notes.setNotes = Notes;
-    notes.resetSearchComponent();
-    updateAriaSelectedOnCategorie(categorie.Name);
-    resetAriaSelectedOnFilterBtn();
   }
 });
 
@@ -719,23 +725,46 @@ UserProfileDataSaveBtn.addEventListener("click", (e) => {
   const conformMsgValue = window.confirm("Are you want to save the changes?");
   if (conformMsgValue) {
     const UserData = Profile.getDataFromUserProfileInputComponents();
-    Profile.updateProfileData(UserData);
-    Profile.updateUserCurrentProfileData();
-    Profile.updateProfileInputComponents();
-    toggleProfileSettingsSection(false);
-    // data update......
-    const { Name, emall, imageSrc } = Profile;
-    const ProfileDataPassword = Profile.getPassword;
-    data.StoreAllInData(
-      { categories: categories.categories },
-      {
-        Name: Name,
-        emall: emall,
-        imageSrc: imageSrc,
-        Password: ProfileDataPassword,
-      }
-    );
-    data.storeInLocalStorage();
+    if (UserData.status == undefined) {
+      Profile.updateProfileData(UserData);
+      Profile.updateUserCurrentProfileData();
+      Profile.updateProfileInputComponents();
+      toggleProfileSettingsSection(false);
+      // data update......
+      const { Name, emall, imageSrc } = Profile;
+      const ProfileDataPassword = Profile.getPassword;
+      data.StoreAllInData(
+        { categories: categories.categories },
+        {
+          Name: Name,
+          emall: emall,
+          imageSrc: imageSrc,
+          Password: ProfileDataPassword,
+        }
+      );
+      data.storeInLocalStorage();
+      new toastMessage().appendtoastMessageElement(
+        new toastMessage().createElement({
+          type: "success",
+          text: "your profile successfully changed!",
+        })
+      );
+    } else {
+      new toastMessage().appendtoastMessageElement(
+        new toastMessage().createElement({
+          type: "warning",
+          text: `${UserData.name} doesn't match conditions!`,
+        })
+      );
+      setTimeout(() => {
+        new toastMessage().appendtoastMessageElement(
+          new toastMessage().createElement({
+            type: "failed",
+            text: "failed to update profile!",
+          })
+        );
+      }, 500);
+    }
   }
 });
 // change the UserPic img with change the #UserPic input value changes ( it needs because before after clicking and changes by the userpic input we get the value but UserPic img never changes )..

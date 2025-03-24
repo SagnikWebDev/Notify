@@ -109,7 +109,9 @@ export class profile {
         value: ProfileInputValue,
       };
     } else if (ProfileInput.id.includes("user-name-password")) {
-      const PasswordRegex = /^[a-zA-Z0-9_\$]{8,20}$/;
+      // const PasswordRegex = /^[a-zA-Z0-9_\$]$/;
+      const PasswordRegex =
+        /^[a-zA-Z0-9]{8,10}([_\$](?=[a-zA-Z0-9]))?[a-zA-Z0-9]{0,9}$/;
       return {
         testValue: PasswordRegex.test(ProfileInputValue),
         value: ProfileInputValue,
@@ -151,7 +153,8 @@ export class profile {
         if (testValue) {
           UserInfo.Name = value;
         } else {
-          throw new Error("InputNameValue doesn't match!!!!!");
+          console.error("InputNameValue doesn't match!!!!!");
+          return { name: "userName", status: false };
         }
       } else if (indexNumber == 1) {
         const { testValue, value } = this.CheckProfileUserInputsValues(
@@ -160,7 +163,8 @@ export class profile {
         if (testValue) {
           UserInfo.Password = value;
         } else {
-          throw new Error("InputPasswordValue doesn't match!!!!!");
+          console.error("InputPasswordValue doesn't match!!!!!");
+          return { name: "password", status: false };
         }
       } else {
         const { testValue, value } = this.CheckProfileUserInputsValues(
@@ -169,7 +173,8 @@ export class profile {
         if (testValue || value == "") {
           UserInfo.emall = value;
         } else {
-          throw new Error("InputEmailValue doesn't match!!!!!");
+          console.error("InputEmailValue doesn't match!!!!!");
+          return { name: "email", status: false };
         }
       }
     }
@@ -1479,5 +1484,105 @@ export class Data {
     this.renderModifyCategories();
     this.renderModifyNotes();
     this.updateCategorieInfoOnMainByData();
+  }
+}
+export class toastMessage {
+  constructor() {
+    this.warning = {
+      type: "warning",
+      iconCode: "&#9888;",
+      color: "yellow",
+      iconColor: "black",
+      headerText: "Warning!",
+      defaultText: "",
+      toastMessageId: generatetempoID("Warning"),
+    };
+    this.failed = {
+      type: "failed",
+      iconCode: "&#10005;",
+      color: "red",
+      iconColor: "white",
+      headerText: "Failed!",
+      defaultText: "",
+      toastMessageId: generatetempoID("failed"),
+    };
+    this.success = {
+      type: "success",
+      iconCode: "&#X2714;",
+      color: "blue",
+      iconColor: "white",
+      headerText: "Success!",
+      defaultText: "",
+      toastMessageId: generatetempoID("Success"),
+    };
+  }
+  createElement({ type, text }) {
+    const { success, warning, failed } = this;
+    const toastMessageType = [success, failed, warning].filter(
+      (object) => object.type == type
+    );
+    const toastMessageObject = toastMessageType[0];
+    console.log(toastMessageObject, type);
+    const toastmessageWrapper = document.createElement("div");
+    toastmessageWrapper.setAttribute("class", "toastmessage-wrapper");
+    toastmessageWrapper.setAttribute("id", toastMessageObject.toastMessageId);
+    const toastmessage = document.createElement("div");
+    toastmessage.setAttribute("class", "toastmessage");
+    const toastmessageImgContainer = document.createElement("div");
+    toastmessageImgContainer.setAttribute(
+      "class",
+      "toastmessage-img-container"
+    );
+    toastmessageImgContainer.style.backgroundColor = toastMessageObject.color;
+    const icon = document.createElement("span");
+    icon.style.color = toastMessageObject.iconColor;
+    icon.setAttribute("class", "icon");
+    icon.innerHTML = toastMessageObject.iconCode;
+    const toastmessageIcon = document.createElement("div");
+    toastmessageIcon.setAttribute("class", "toastmessage-icon");
+    const toastmessageTextContainer = document.createElement("div");
+    toastmessageTextContainer.setAttribute(
+      "class",
+      "toastmessage-text-container"
+    );
+    const toastmessageHeaderText = document.createElement("div");
+    toastmessageHeaderText.setAttribute("class", "toastmessage-text");
+    toastmessageHeaderText.innerHTML = toastMessageObject.headerText;
+    const toastmessageText = document.createElement("div");
+    toastmessageText.setAttribute("class", "toastmessage-text");
+    toastmessageText.setAttribute("id", "toastmessage-text");
+    toastmessageText.innerHTML = text ? text : toastMessageObject.defaultText;
+    toastmessageImgContainer.appendChild(icon);
+    toastmessageTextContainer.appendChild(toastmessageHeaderText);
+    toastmessageTextContainer.appendChild(toastmessageText);
+    toastmessage.appendChild(toastmessageImgContainer);
+    toastmessage.appendChild(toastmessageTextContainer);
+    toastmessageWrapper.appendChild(toastmessage);
+    toastmessageWrapper.style.setProperty(
+      "--toastloader-color",
+      toastMessageObject.color
+    );
+    return toastmessageWrapper;
+  }
+  appendtoastMessageElement(createElement) {
+    const targetElementId = createElement.id;
+    document
+      .querySelector(".toastmessage-container")
+      .appendChild(createElement);
+    createElement.style = "margin-left: 0px;";
+    createElement.style.setProperty(
+      "--toastloader-animation",
+      "toastLoading 1000ms ease-in"
+    );
+    setTimeout(() => {
+      createElement.style.setProperty("--toastloader-color", "transparent");
+      document.getElementById(targetElementId).style = "margin-left: 205px;";
+    }, 990);
+    setTimeout(() => {
+      createElement.style.setProperty("--toastloader-color", "transparent");
+    }, 995);
+    setTimeout(() => {
+      document.getElementById(targetElementId).remove();
+    }, 1200);
   }
 }

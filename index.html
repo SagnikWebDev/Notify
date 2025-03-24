@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/index.css" />
-    <link rel="shortcut icon" href="./src/rb_favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="./src/notifylogo.png" type="image/x-icon" />
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@2.8.8/dist/header.umd.min.js"></script>
     <script src="
@@ -78,7 +78,7 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
             <div class="webApp-Name-container" aria-label="Notify icon">
               <div class="webApp-img-container">
                 <img
-                  src="./src/rb_1798.png"
+                  src="./src/notifylogo(s).png"
                   id="Notify-img"
                   alt="Notify-img"
                   aria-label="icon"
@@ -122,7 +122,9 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
                   /></label>
                   <input type="file" value="" id="UserPic" />
                 </div>
-                <button aria-label="back" class="back-btn"><<</button>
+                <button aria-label="back" class="back-btn" title="back">
+                  <span><i class="fa-solid fa-xmark"></i></span>
+                </button>
               </div>
               <div class="profile-settings-section_middle-section">
                 <ul
@@ -160,9 +162,9 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
                       type="text"
                       id="user-name-password"
                       class="profile-settings-section_middle-section_detail-inputs"
-                      pattern="^[a-zA-Z0-9]+[_$]*[a-zA-Z0-9]+$"
+                      pattern="^[a-zA-Z0-9]{8,10}([_\$](?=[a-zA-Z0-9]))?[a-zA-Z0-9]{0,9}$"
                       minlength="8"
-                      maxlength="19"
+                      maxlength="20"
                       placeholder="Enter your Password"
                       value=""
                     />
@@ -216,17 +218,11 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
               aria-expanded="false"
               aria-controls="left-aside-section"
             >
-              <!-- menu -->
               <i class="fa-solid fa-bars"></i>
             </button>
           </div>
           <div class="nogroup-img-wrapper">
             <div class="nogroup-img">
-              <!-- <img
-                src="./src/7083.jpg_wh860.jpg"
-                alt="nogroup-img"
-                class="nogroup-img"
-              /> -->
               <a
                 href="https://www.flaticon.com/free-icons/plagiarism"
                 title="plagiarism icons"
@@ -276,7 +272,6 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
                 aria-expanded="false"
                 aria-controls="left-aside-section"
               >
-                <!-- menu -->
                 <i class="fa-solid fa-bars"></i>
               </button>
             </header>
@@ -293,12 +288,6 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
                   role="button"
                 >
                   <summary>
-                    <!-- <img
-                      src="./src/filter.png"
-                      alt="filter-img"
-                      class="sort-btns-imgs"
-                      aria-hidden="true"
-                    /> -->
                     <span><i class="fa-solid fa-filter"></i></span>
                   </summary>
                   <div class="sort-value-container" id="filter">
@@ -344,12 +333,6 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
                   aria-label="Filter By Tags"
                 >
                   <summary>
-                    <!-- <img
-                      src="./src/tag.png"
-                      alt="tag-img"
-                      class="sort-btns-imgs"
-                      aria-hidden="true"
-                    /> -->
                     <span><i class="fa-solid fa-tags"></i></span>
                   </summary>
                   <div class="sort-value-container" id="filterTags">
@@ -376,7 +359,6 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
                 aria-label="search"
                 data-searchable=""
               >
-                <!-- <img src="./src/search.png" alt="search-btn-logo" class="search-btn-pic" aria-hidden="true">  -->
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
               <ul class="suggestions-container"></ul>
@@ -405,7 +387,7 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
           </section>
           <div class="bar-left-wrapper">
             <img
-              src="./src/rb_favicon.png"
+              src="./src/notifylogo.png"
               class="notifylogo"
               alt="notify-logo"
             />
@@ -457,10 +439,14 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
             </details>
             <div class="right-aside-section-upper-section-buttons-container">
               <button class="note-back-btn" aria-label="Back from note editor">
-                back
+                <i class="fa-solid fa-left-long"></i>
               </button>
-              <button class="note-del-btn" aria-label="delete note">del</button>
-              <button class="note-save-btn" aria-label="save note">save</button>
+              <button class="note-del-btn" aria-label="delete note">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+              <button class="note-save-btn" aria-label="save note">
+                <i class="fa-solid fa-floppy-disk"></i>
+              </button>
             </div>
           </div>
           <div class="content-heeder-section">
@@ -473,12 +459,6 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
             />
             <div class="tags-section">
               <button class="add-tags-btn" aria-label="add tags">
-                <!-- <img
-                  src="./src/tag.png"
-                  alt="tag-img"
-                  class="tag-btn-img"
-                  inert
-                /> -->
                 <span><i class="fa-solid fa-tag"></i></span>
               </button>
               <div class="tags-container" aria-live="polite"></div>
@@ -487,7 +467,7 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
           <div id="editor"></div>
           <div class="bar-right-wrapper">
             <img
-              src="./src/rb_favicon.png"
+              src="./src/notifylogo.png"
               class="notifylogo"
               alt="notify-logo"
             />
@@ -496,10 +476,10 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
       </div>
     </div>
     <button class="add-circular-btn" title="add Categorie">+</button>
-    <div class="loader-section">
+    <div class="loader-section" aria-hidden="true">
       <div class="loader-component">
         <img
-          src="./src/rb_favicon.png"
+          src="./src/notifylogo.png"
           class="loader-notify-img"
           alt="loader notify img"
         />
@@ -508,5 +488,6 @@ https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
         </div>
       </div>
     </div>
+    <div class="toastmessage-container" aria-hidden="true"></div>
   </body>
 </html>
