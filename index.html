@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="shortcut icon" href="./src/notifylogo.png" type="image/x-icon" />
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@2.8.8/dist/header.umd.min.js"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/@editorjs/simple-image@1.6.0/dist/simple-image.umd.min.js
+"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/@editorjs/list@2.0.4/dist/editorjs-list.umd.min.js
+"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/@editorjs/checklist@1.6.0/dist/checklist.umd.min.js
+"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Notify</title>
+    <script type="module" src="./js/index.js" defer></script>
+    <script type="module" src="./js/dragFeatureFunction.js" defer></script>
+    <script type="module" src="./js/editor.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-aside-section-wrapper">
+        <aside id="left-aside-section" class="">
+          <section class="left-aside-section_first-section">
+            <div class="profile-container">
+              <div class="profile-img-wrapper">
+                <img
+                  src="./src/Profile.png"
+                  id="profile-img"
+                  alt="profile-img"
+                  aria-label="user account profile picture"
+                />
+              </div>
+              <div class="username" aria-label="username" tabindex="-1">
+                <p id="profile-Name">Sagnik Ghosh</p>
+              </div>
+            </div>
+            <button
+              id="mode"
+              data-mode="light"
+              title="mode"
+              aria-label="Toggle dark mode"
+            >
+              <span class="mode-icon-wrapper light" tabindex="-1"
+                ><i class="fa-regular fa-sun" tabindex="-1"></i
+              ></span>
+            </button>
+          </section>
+          <section class="left-aside-section_second-section">
+            <div class="categories-section-wrapper">
+              <div class="categories-additionbtn-container">
+                <p>CATEGORIES</p>
+                <button
+                  class="add-categorie-btn"
+                  title="add"
+                  aria-label="add categorie"
+                >
+                  +
+                </button>
+              </div>
+              <div class="categories-container-wrapper">
+                <ul role="region" aria-live="polite"></ul>
+              </div>
+            </div>
+          </section>
+          <section class="left-aside-third-section">
+            <div class="webApp-Name-container" aria-label="Notify icon">
+              <div class="webApp-img-container">
+                <img
+                  src="./src/notifylogo(s).png"
+                  id="Notify-img"
+                  alt="Notify-img"
+                  aria-label="icon"
+                  aria-hidden="true"
+                />
+              </div>
+              <p class="webApp-Name" id="Notify" aria-hidden="true">Notify</p>
+            </div>
+            <button
+              id="settings"
+              aria-label="settings"
+              aria-controls="profile-settings"
+              aria-expanded="false"
+            >
+              <img
+                src="./src/profile-settings.png"
+                alt="settings"
+                class="settings-img"
+                inert
+              />
+            </button>
+          </section>
+          <section
+            class="profile-settings-section"
+            aria-hidden="true"
+            id="profile-settings"
+          >
+            <form
+              class="profile-settings-section_form"
+              onsubmit="return false;"
+            >
+              <div class="profile-settings-section_upper-section">
+                <div class="user-pic-wrapper">
+                  <label for="UserPic" id="UserPic-label"
+                    ><img
+                      src="./src/Profile.png"
+                      id="UserPic-img"
+                      alt="profile-img"
+                      aria-label="edit user account profile picture"
+                      tabindex="0"
+                  /></label>
+                  <input type="file" value="" id="UserPic" />
+                </div>
+                <button aria-label="back" class="back-btn" title="back">
+                  <span><i class="fa-solid fa-xmark"></i></span>
+                </button>
+              </div>
+              <div class="profile-settings-section_middle-section">
+                <ul
+                  class="profile-settings-section_middle-section_detail-wrapper"
+                >
+                  <li class="profile-settings-section_middle-section_detail">
+                    <label
+                      for="user-name-input"
+                      id="profile-settings-section_middle-section_userName "
+                      class=""
+                      >UserName</label
+                    >
+                    <input
+                      type="text"
+                      id="user-name-input"
+                      class="profile-settings-section_middle-section_detail-inputs"
+                      pattern="^([a-zA-Z]{4,15}([_](?=(?:[a-zA-Z]|[0-9])))?([a-zA-Z0-9]{1,10})?)$"
+                      maxlength="15"
+                      placeholder="Enter your name"
+                      value=""
+                    />
+                    <span
+                      class="messages-section"
+                      data-vaild="accepted"
+                      data-error="UserName Not Vaild"
+                    ></span>
+                  </li>
+                  <li class="profile-settings-section_middle-section_detail">
+                    <label
+                      for="user-name-password"
+                      id="profile-settings-section_middle-section_password "
+                      >Password</label
+                    >
+                    <input
+                      type="text"
+                      id="user-name-password"
+                      class="profile-settings-section_middle-section_detail-inputs"
+                      pattern="^[a-zA-Z0-9]{8,10}([_\$](?=[a-zA-Z0-9]))?[a-zA-Z0-9]{0,9}$"
+                      minlength="8"
+                      maxlength="20"
+                      placeholder="Enter your Password"
+                      value=""
+                    />
+                    <span
+                      class="messages-section"
+                      data-vaild="accepted"
+                      data-error="Password Not Vaild"
+                    ></span>
+                  </li>
+                  <li class="profile-settings-section_middle-section_detail">
+                    <label
+                      for="user-name-email"
+                      id="profile-settings-section_middle-section_email "
+                      class=""
+                      >Email</label
+                    >
+                    <input
+                      type="email"
+                      id="user-name-email"
+                      class="profile-settings-section_middle-section_detail-inputs"
+                      value=""
+                      placeholder="Enter your Email"
+                      pattern="^[a-zA-Z0-9]+(?:[\-_%\.\+][a-zA-Z0-9]+)*@[a-zA-Z0-9\-]+\.[a-z]{2,}$"
+                    />
+                    <span
+                      class="messages-section"
+                      data-vaild="accepted"
+                      data-error="Email Not Vaild"
+                    ></span>
+                  </li>
+                </ul>
+              </div>
+              <button class="Save-btn" aria-label="save profile changes">
+                Save
+              </button>
+            </form>
+          </section>
+        </aside>
+      </div>
+      <div class="cover">
+        <div class="nogroup">
+          <div class="nogroup-container-wrapper">
+            <div class="nogroup-text-container">
+              <p class="nogroup-header greetingsText">Good Morning</p>
+              <p class="nogroup-date-text dateText">Sun Feb 09 2025</p>
+            </div>
+            <button
+              class="toggle"
+              title="Menu"
+              aria-label="Menu"
+              aria-expanded="false"
+              aria-controls="left-aside-section"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+          <div class="nogroup-img-wrapper">
+            <div class="nogroup-img">
+              <a
+                href="https://www.flaticon.com/free-icons/plagiarism"
+                title="plagiarism icons"
+                class="nogroup-img-link"
+                aria-describedby="Nogroup-text"
+                aria-label="no categorie added img link"
+                ><img
+                  src="./src/plagiarism.png"
+                  class="nogroup-img"
+                  alt="no categorie added img"
+                  tabindex="-1"
+              /></a>
+              <span class="nogroup-img-text" id="Nogroup-text" tabindex="0"
+                >No Group Created Yet.</span
+              >
+            </div>
+          </div>
+        </div>
+        <main class="hidden">
+          <section class="main-first-section">
+            <header>
+              <div class="header-text-container">
+                <h1
+                  class="header-text"
+                  aria-label="Categorie Name"
+                  tabindex="0"
+                >
+                  General
+                </h1>
+                <p class="date-time">
+                  <span
+                    aria-label="greetings"
+                    tabindex="0"
+                    class="greetingsText"
+                    >Good morning</span
+                  ><span aria-label="Current Time" tabindex="0" id="timeText"
+                    >09:00am</span
+                  ><span aria-label="Current Date" tabindex="0" class="dateText"
+                    >(23/10/1992)</span
+                  >
+                </p>
+              </div>
+              <button
+                class="toggle"
+                title="Menu"
+                aria-label="Menu"
+                aria-expanded="false"
+                aria-controls="left-aside-section"
+              >
+                <i class="fa-solid fa-bars"></i>
+              </button>
+            </header>
+          </section>
+          <section class="main-second-section">
+            <div class="main-second-section_first-section">
+              <p id="note-number" tabindex="0">28 Notes</p>
+              <div class="sorting-btn-container">
+                <details
+                  name="User_Sort-data"
+                  id="User-Sort"
+                  title="sort"
+                  aria-label="Sort"
+                  role="button"
+                >
+                  <summary>
+                    <span><i class="fa-solid fa-filter"></i></span>
+                  </summary>
+                  <div class="sort-value-container" id="filter">
+                    <summary
+                      class="filter-options"
+                      data-value="General"
+                      tabindex="0"
+                      aria-selected="false"
+                    >
+                      General
+                    </summary>
+                    <summary
+                      class="filter-options"
+                      data-value="Medium"
+                      tabindex="0"
+                      aria-selected="false"
+                    >
+                      medium
+                    </summary>
+                    <summary
+                      class="filter-options"
+                      data-value="Low"
+                      tabindex="0"
+                      aria-selected="false"
+                    >
+                      low
+                    </summary>
+                    <summary
+                      class="filter-options"
+                      data-value="default"
+                      tabindex="0"
+                      aria-selected="true"
+                      id="filter-options-lastchild"
+                    >
+                      default
+                    </summary>
+                  </div>
+                </details>
+                <details
+                  name="User_tags"
+                  title="Tags"
+                  id="User-tags"
+                  aria-label="Filter By Tags"
+                >
+                  <summary>
+                    <span><i class="fa-solid fa-tags"></i></span>
+                  </summary>
+                  <div class="sort-value-container" id="filterTags">
+                    <summary
+                      class="filterTags-options"
+                      data-value=""
+                      tabindex="0"
+                    >
+                      No Tags
+                    </summary>
+                  </div>
+                </details>
+              </div>
+            </div>
+            <div class="search-input-container">
+              <input
+                type="text"
+                placeholder="Search Notes..."
+                class="search-input"
+              />
+              <button
+                class="search-btn"
+                title="Search"
+                aria-label="search"
+                data-searchable=""
+              >
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+              <ul class="suggestions-container"></ul>
+            </div>
+            <button
+              class="add-Note-btn"
+              title="Add Notes"
+              aria-label="Add Notes"
+            >
+              <span class="add-Note-btn_plus-icon" aria-hidden="true">+</span
+              ><span>ADD NOTE</span>
+            </button>
+          </section>
+          <section class="main-third-section">
+            <ul
+              aria-live="polite"
+              role="region"
+              class="note-wrapper-container hidden"
+            ></ul>
+            <div class="empty-img-section-wrapper">
+              <div class="empty-img-section">
+                <img src="./src/pencil.png" class="empty-img" alt="" />
+                <span class="empty-img-text" tabindex="0">No Notes Yet.</span>
+              </div>
+            </div>
+          </section>
+          <div class="bar-left-wrapper">
+            <img
+              src="./src/notifylogo.png"
+              class="notifylogo"
+              alt="notify-logo"
+            />
+          </div>
+        </main>
+        <div class="bar" draggable="true"></div>
+        <aside
+          id="right-aside-section"
+          class="right-aside-section-open hidden"
+          data-exists="false"
+          aria-label="Note Editor Open"
+        >
+          <div class="right-aside-section-upper-section">
+            <details
+              class="select-level-container"
+              data-color="red"
+              data-text="General"
+            >
+              <summary
+                class="select-level-options"
+                id="select-level-options-first-element"
+                aria-label="inportent level option General"
+                aria-selected="true"
+                tabindex="0"
+              >
+                <span class="circle red" id="red"></span>
+                <p class="inportent-level-text" tabindex="-1">General</p>
+              </summary>
+              <div class="select-level-options-cover">
+                <summary
+                  class="select-level-options select-level-secondery-options"
+                  aria-label="inportent level option medium"
+                  tabindex="0"
+                  aria-selected="false"
+                >
+                  <span class="circle yellow" id="yellow"></span>
+                  <p class="inportent-level-text" tabindex="-1">medium</p>
+                </summary>
+                <summary
+                  class="select-level-options select-level-secondery-options"
+                  aria-label="inportent level option low"
+                  tabindex="0"
+                  aria-selected="false"
+                >
+                  <span class="circle green" id="green"></span>
+                  <p class="inportent-level-text" tabindex="-1">low</p>
+                </summary>
+              </div>
+            </details>
+            <div class="right-aside-section-upper-section-buttons-container">
+              <button class="note-back-btn" aria-label="Back from note editor">
+                <i class="fa-solid fa-left-long"></i>
+              </button>
+              <button class="note-del-btn" aria-label="delete note">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+              <button class="note-save-btn" aria-label="save note">
+                <i class="fa-solid fa-floppy-disk"></i>
+              </button>
+            </div>
+          </div>
+          <div class="content-heeder-section">
+            <input
+              type="text"
+              class="content-heeder-section-header"
+              placeholder="Enter The Title"
+              value=""
+              required
+            />
+            <div class="tags-section">
+              <button class="add-tags-btn" aria-label="add tags">
+                <span><i class="fa-solid fa-tag"></i></span>
+              </button>
+              <div class="tags-container" aria-live="polite"></div>
+            </div>
+          </div>
+          <div id="editor"></div>
+          <div class="bar-right-wrapper">
+            <img
+              src="./src/notifylogo.png"
+              class="notifylogo"
+              alt="notify-logo"
+            />
+          </div>
+        </aside>
+      </div>
+    </div>
+    <button class="add-circular-btn" title="add Categorie">+</button>
+    <div class="loader-section" aria-hidden="true">
+      <div class="loader-component">
+        <img
+          src="./src/notifylogo.png"
+          class="loader-notify-img"
+          alt="loader notify img"
+        />
+        <div class="loader-wrapper">
+          <div class="loader"></div>
+        </div>
+      </div>
+    </div>
+    <div class="toastmessage-container" aria-hidden="true"></div>
+  </body>
+</html>
